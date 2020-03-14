@@ -1,4 +1,4 @@
-import React, { Component,ReactElement } from 'react';
+import React, { Component, ReactElement } from 'react';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid'
 import './common.css';
@@ -16,10 +16,10 @@ export class DetailFilm extends Component<Props> {
             <div className="detailFilm">
                 <Paper className="detailFilm__content">
                     <Grid container spacing={3}>
-                        <Grid item xs={4}>
+                        <Grid item xs={3}>
                             <img className="detailFilm__poster" src={data.Poster} alt=""/>
                         </Grid>
-                        <Grid item xs={8} alignContent="flex-start">
+                        <Grid item xs={9} alignContent="flex-start">
                             <div className="detailFilm__header">
                                 <h1 className="detailFilm__title">
                                     {data.Title}
