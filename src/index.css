@@ -13,6 +13,7 @@ code {
 }
 
 .App {
-  height: 100vh;
+  min-height: 100vh;
   background-color: #cfd8dc;
+  padding-bottom: 16px;
 }

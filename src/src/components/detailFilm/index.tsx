@@ -1,6 +1,8 @@
 import React, { Component, ReactElement } from 'react';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid'
+import { InfoTable } from '../infoTable';
+import { serialiseData } from '../infoTable/utils';
 import './common.css';
 
 interface Props {
@@ -11,6 +13,7 @@ interface Props {
 export class DetailFilm extends Component<Props> {
     render(): ReactElement {
         const { data } = this.props;
+        const tableData = serialiseData(data);
 
         return (
             <div className="detailFilm">
@@ -29,6 +32,10 @@ export class DetailFilm extends Component<Props> {
                             <p className="detailFilm__plot">
                                 {data.Plot}
                             </p>
+
+                            <div className="detailFilm__table">
+                                <InfoTable { ...tableData }/>
+                            </div>
                         </Grid>
                     </Grid>
                 </Paper>
