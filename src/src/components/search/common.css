@@ -4,3 +4,12 @@
     margin-bottom: 32px;
 }
 
+.search__optionRow {
+    display: flex;
+    align-items: center;
+}
+
+.search__optionImage {
+    max-height: 40px;
+    margin-right: 16px;
+}
