@@ -24,6 +24,7 @@ export function Search() {
                             />
                         </div>
                     )}
+                    getOptionLabel={(option) => option.Title}
                     renderOption={(option) => (
                             <div className="search__optionRow">
                                 <img className="search__optionImage" src={option.Poster} alt=""/>
