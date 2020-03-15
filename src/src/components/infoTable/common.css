@@ -1,0 +1,20 @@
+.infoTable {}
+
+.infoTable__row {
+    display: flex;
+    padding-bottom: 6px;
+    padding-top: 6px;
+    border-bottom: 1px solid #CFD8DC;
+}
+
+.infoTable__fieldName, .infoTable__fieldValue {
+    text-align: left;
+}
+
+.infoTable__fieldName {
+    width: 40%;
+}
+
+.infoTable__fieldValue {
+    width: 60%;
+}
