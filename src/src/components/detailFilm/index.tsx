@@ -73,3 +73,7 @@ const renderPlot = (isLoading: boolean, plot: string): ReactElement | string => 
         )
         : plot
 };
+
+const renderErrorPage = () => {
+
+}
