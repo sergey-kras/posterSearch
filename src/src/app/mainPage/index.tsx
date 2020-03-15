@@ -1,6 +1,7 @@
 import React, { Component, ReactElement } from 'react';
 import Grid from '@material-ui/core/Grid';
 import { Container } from '@material-ui/core';
+import { search as makeSearchByApi } from '../../../api';
 import { Search } from '../../components/search';
 import { DetailFilm } from '../../components/detailFilm';
 
@@ -45,7 +46,11 @@ const MocCurrentFilm = {
     Response: 'True'
 };
 
-export class MainPage extends Component{
+export class MainPage extends Component {
+    search = (searchString: string) => {
+        return makeSearchByApi(searchString);
+    };
+
     render(): ReactElement {
         return (
             <Container maxWidth="md">
@@ -54,7 +59,7 @@ export class MainPage extends Component{
                     direction="column"
                     justify="flex-start"
                     alignItems="center">
-                    <Search/>
+                    <Search onChangeSearchString={this.search}/>
                     <DetailFilm data={MocCurrentFilm}/>
                 </Grid>
             </Container>
