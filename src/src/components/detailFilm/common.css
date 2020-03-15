@@ -1,0 +1,32 @@
+.detailFilm {
+    width: 100%;
+}
+
+.detailFilm__content {
+    padding: 0 16px;
+}
+
+.detailFilm__poster {
+    max-width: 100%;
+}
+
+.detailFilm__header {
+    text-align: left;
+}
+
+.detailFilm__title {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.detailFilm__plot {
+    text-align: left;
+    line-height: 24px;
+}
+
+.detailFilm__loader {
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

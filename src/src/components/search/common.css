@@ -1,0 +1,18 @@
+.search {
+    width: 100%;
+    margin-top: 16px;
+    margin-bottom: 32px;
+}
+
+.search__optionRow {
+    display: flex;
+    align-items: center;
+}
+
+.search__optionImage {
+    height: 50px;
+    width: 50px;
+    background-position: center;
+    margin-right: 16px;
+    background-size: cover;
+}
