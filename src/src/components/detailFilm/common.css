@@ -23,3 +23,10 @@
     text-align: left;
     line-height: 24px;
 }
+
+.detailFilm__loader {
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

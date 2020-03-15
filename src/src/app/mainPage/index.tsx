@@ -61,7 +61,9 @@ export class MainPage extends Component {
                     justify="flex-start"
                     alignItems="center">
                     <Search onChangeSearchString={this.search}/>
-                    <DetailFilm data={MocCurrentFilm}/>
+                    <DetailFilm
+                        isLoading={true}
+                        data={MocCurrentFilm}/>
                 </Grid>
             </Container>
         );
