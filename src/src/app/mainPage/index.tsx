@@ -59,8 +59,9 @@ export class MainPage extends Component {
     };
 
     searchFullInfoByFilm = async (preset: SearchObject) => {
+        this.setState({ isLoading: true, film: null });
         const result = await searchFilm(preset.imdbID);
-        this.setState({ film: result });
+        this.setState({ film: result, isLoading: false });
     };
 
     render(): ReactElement {

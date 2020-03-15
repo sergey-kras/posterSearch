@@ -17,26 +17,26 @@ interface Props {
 export const DetailFilm = (props: Props) => {
     const { data, isLoading } = props;
 
-    if(!data) return null;
+    if(!data && !isLoading) return null;
 
-    const tableData = serialiseData(data);
+    const tableData = data && serialiseData(data);
 
     return (
         <div className="detailFilm">
             <Paper className="detailFilm__content">
                 <Grid container spacing={3}>
                     <Grid item xs={3}>
-                        {renderPoster(isLoading, data.Poster as string)}
+                        {renderPoster(isLoading, data?.Poster as string)}
                     </Grid>
                     <Grid item xs={9} alignContent="flex-start">
                         <div className="detailFilm__header">
                             <h1 className="detailFilm__title">
-                                {renderTitle(isLoading, data.Title as string)}
+                                {renderTitle(isLoading, data?.Title as string)}
                             </h1>
                         </div>
 
                         <p className="detailFilm__plot">
-                            {renderPlot(isLoading, data.Plot as string)}
+                            {renderPlot(isLoading, data?.Plot as string)}
                         </p>
 
                         <div className="detailFilm__table">
