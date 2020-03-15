@@ -8,6 +8,7 @@ import { SearchObject, SearchResponse} from '../../types';
 
 interface Props {
     onChangeSearchString: (searchString: string) => Promise<SearchResponse>;
+    onChangeFilm: (film: SearchObject) => void;
 }
 
 interface State {
@@ -47,6 +48,7 @@ export class Search extends Component<Props, State>{
 
     render(): ReactElement {
         const { films, isLoading, alertText } = this.state;
+        const { onChangeFilm } = this.props;
 
         return (
             <div className="search">
@@ -77,7 +79,7 @@ export class Search extends Component<Props, State>{
                                 {option.Title}
                             </div>
                         )}
-                        onChange={(e: any, value: any) => value.Title}
+                        onChange={(e: any, value: any) => onChangeFilm(value)}
                     />
                 </Card>
             </div>

@@ -16,6 +16,9 @@ interface Props {
 
 export const DetailFilm = (props: Props) => {
     const { data, isLoading } = props;
+
+    if(!data) return null;
+
     const tableData = serialiseData(data);
 
     return (

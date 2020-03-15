@@ -1,10 +1,10 @@
 import React, { Component, ReactElement } from 'react';
 import Grid from '@material-ui/core/Grid';
 import { Container } from '@material-ui/core';
-import { search as makeSearchByApi } from '../../../api';
+import { search as makeSearchByApi, searchFilm } from '../../../api';
 import { Search } from '../../components/search';
 import { DetailFilm } from '../../components/detailFilm';
-import {SearchResponse} from "../../types";
+import { SearchObject } from '../../types';
 
 const MocCurrentFilm = {
     Title: 'V for Vendetta',
@@ -48,11 +48,23 @@ const MocCurrentFilm = {
 };
 
 export class MainPage extends Component {
+    state = {
+        isLoading: false,
+        film: null,
+        hasError: false,
+    };
+
     search = (searchString: string) => {
         return makeSearchByApi(searchString);
     };
 
+    searchFullInfoByFilm = async (preset: SearchObject) => {
+        const result = await searchFilm(preset.imdbID);
+        this.setState({ film: result });
+    };
+
     render(): ReactElement {
+        const { isLoading, film } = this.state;
         return (
             <Container maxWidth="md">
                 <Grid
@@ -60,10 +72,10 @@ export class MainPage extends Component {
                     direction="column"
                     justify="flex-start"
                     alignItems="center">
-                    <Search onChangeSearchString={this.search}/>
+                    <Search onChangeSearchString={this.search} onChangeFilm={this.searchFullInfoByFilm}/>
                     <DetailFilm
-                        isLoading={true}
-                        data={MocCurrentFilm}/>
+                        isLoading={isLoading}
+                        data={film}/>
                 </Grid>
             </Container>
         );

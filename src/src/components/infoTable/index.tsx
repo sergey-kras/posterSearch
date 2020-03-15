@@ -38,7 +38,7 @@ export const InfoTable = (props: Props): ReactElement => {
 
     const tableEntries = Object.entries(props);
     for (const [key, value] of tableEntries) {
-        if(typeof value === 'string') {
+        if(typeof value !== 'object') {
             result.push(renderRow(key, value));
         } else {
             value.forEach((rate: Ratings) => {

@@ -16,3 +16,14 @@ export function search(searchString: string): Promise<SearchResponse> {
         .then((response: AxiosResponse) => response.data)
         .catch((error) => { return false });
 }
+
+export function searchFilm(filmId: string): Promise<SearchResponse> {
+    return http({
+        method: 'get',
+        params: {
+            i: filmId,
+        }
+    })
+        .then((response: AxiosResponse) => response.data)
+        .catch((error) => { return false });
+}
