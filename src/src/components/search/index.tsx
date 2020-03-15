@@ -2,45 +2,61 @@ import React, { Component, ReactElement, ChangeEvent } from 'react';
 import TextField from '@material-ui/core/TextField'
 import Card from '@material-ui/core/Card'
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import { AxiosPromise } from 'axios';
 import _ from 'lodash';
 import './common.css';
-import { SearchObject } from '../../types';
+import { SearchObject, SearchResponse} from '../../types';
 
 interface Props {
-    onChangeSearchString: (searchString: string) => AxiosPromise<SearchObject[]>;
+    onChangeSearchString: (searchString: string) => Promise<SearchResponse>;
 }
 
-export class Search extends Component<Props>{
+interface State {
+    isLoading: boolean;
+    alertText: string;
+    films: SearchObject[];
+}
+
+export class Search extends Component<Props, State>{
     state = {
         isLoading: false,
-        hasError: false,
+        alertText: 'Enter some to find films',
         films: []
     };
 
     sendSearchString = _.debounce(async (value) => {
         const { onChangeSearchString } = this.props;
         const result = await onChangeSearchString(value);
-        if (result) {
-            this.setState({ films: result });
+        if (result.Search) {
+            this.setState({
+                films: result.Search,
+                isLoading: false,
+            });
+        } else {
+            this.setState({
+                isLoading: false,
+                alertText: 'Films not found'
+            });
         }
     }, 1000);
 
     onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
         const value = e?.target?.value;
+        this.setState({ isLoading: true, films: [] });
         this.sendSearchString(value);
     };
 
     render(): ReactElement {
-        const { films } = this.state;
+        const { films, isLoading, alertText } = this.state;
 
         return (
             <div className="search">
                 <Card>
                     <Autocomplete
-                        freeSolo
                         disableClearable
+                        loading={isLoading}
                         options={films}
+                        noOptionsText={alertText}
+                        debug
                         // пофиксить params
                         renderInput={(params: any) => (
                             <div className="search__input">
@@ -57,7 +73,7 @@ export class Search extends Component<Props>{
                         getOptionLabel={(option) => option.Title}
                         renderOption={(option) => (
                             <div className="search__optionRow">
-                                <img className="search__optionImage" src={option.Poster} alt=""/>
+                                <div className="search__optionImage" style={{backgroundImage: `url(${option.Poster})`}}/>
                                 {option.Title}
                             </div>
                         )}
@@ -68,13 +84,3 @@ export class Search extends Component<Props>{
         );
     }
 }
-
-// const Poster = 'https://m.media-amazon.com/images/M/MV5BOTI5ODc3NzExNV5BMl5BanBnXkFtZTcwNzYxNzQzMw@@._V1_SX300.jpg';
-
-// const top100Films = [
-//     { Title: 'The Shawshank Redemption', Poster },
-//     { Title: 'The Godfather', Poster },
-//     { Title: 'The Godfather: Part II', Poster },
-//     { Title: 'The Dark Knight', Poster },
-//     { Title: '12 Angry Men', Poster },
-// ];

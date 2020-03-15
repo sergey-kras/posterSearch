@@ -4,6 +4,7 @@ import { Container } from '@material-ui/core';
 import { search as makeSearchByApi } from '../../../api';
 import { Search } from '../../components/search';
 import { DetailFilm } from '../../components/detailFilm';
+import {SearchResponse} from "../../types";
 
 const MocCurrentFilm = {
     Title: 'V for Vendetta',
