@@ -1,5 +1,4 @@
 import React, { Component, ReactElement } from 'react';
-import { IntlProvider } from 'react-intl';
 import Grid from '@material-ui/core/Grid';
 import { Container } from '@material-ui/core';
 import { search as makeSearchByApi, searchFilm } from '../../../api';
@@ -7,8 +6,6 @@ import { Search } from '../../components/search';
 import { DetailFilm } from '../../components/detailFilm';
 import { SearchObject } from '../../types';
 import { EmptyContent } from '../../components/emptyContent';
-import { TopBar } from '../../components/topBar';
-import { ru } from '../../../localize/ru';
 
 export class MainPage extends Component {
     state = {
@@ -41,24 +38,21 @@ export class MainPage extends Component {
     render(): ReactElement {
         const { isLoading, film, hasError, currentPreset } = this.state;
         return (
-            <IntlProvider { ...ru }>
-                <TopBar/>
-                <Container maxWidth="md">
-                    <Grid
-                        container
-                        direction="column"
-                        justify="flex-start"
-                        alignItems="center">
-                        <Search onChangeSearchString={this.search} onChangeFilm={this.searchFullInfoByFilm}/>
-                        { hasError ?
-                            <EmptyContent tryAgain={() => this.searchFullInfoByFilm(currentPreset as SearchObject)}/>
-                                : <DetailFilm
-                                    isLoading={isLoading}
-                                    data={film}/>
-                        }
-                    </Grid>
-                </Container>
-            </IntlProvider>
+            <Container maxWidth="md">
+                <Grid
+                    container
+                    direction="column"
+                    justify="flex-start"
+                    alignItems="center">
+                    <Search onChangeSearchString={this.search} onChangeFilm={this.searchFullInfoByFilm}/>
+                    { hasError ?
+                        <EmptyContent tryAgain={() => this.searchFullInfoByFilm(currentPreset as SearchObject)}/>
+                            : <DetailFilm
+                                isLoading={isLoading}
+                                data={film}/>
+                    }
+                </Grid>
+            </Container>
         );
     }
 }

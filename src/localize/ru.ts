@@ -4,6 +4,7 @@ export const ru = {
         'search.placeholder': 'Поиск',
         'search.noFound': 'Фильмы не найдены',
         'search.hello': 'Начните вводить, мы подберем варианты',
+        'search.loading': 'Загрузкаen...',
 
         'emptyContent.text': 'Произошла ошибка при запросе на сервер. Попробуйте еще раз',
         'emptyContent.try': 'Попробовать',

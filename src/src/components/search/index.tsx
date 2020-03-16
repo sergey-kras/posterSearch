@@ -59,7 +59,7 @@ export class Search extends Component<Props, State>{
                         loading={isLoading}
                         options={films}
                         noOptionsText={alertText}
-                        debug
+                        loadingText={<FormattedMessage id='search.loading'/>}
                         // пофиксить params
                         renderInput={(params: any) => (
                             <div className="search__input">
