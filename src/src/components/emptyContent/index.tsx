@@ -1,6 +1,7 @@
 import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
+import { FormattedMessage } from 'react-intl';
 import './common.css';
 
 interface Props {
@@ -13,10 +14,10 @@ export function EmptyContent(props: Props) {
         <div className="emptyContent">
             <Paper className="emptyContent__content">
                 <p>
-                    An error occurred while requesting, try downloading the content again.
+                    <FormattedMessage id='emptyContent.text'/>
                 </p>
                 <Button variant="contained" color="primary" onClick={tryAgain}>
-                    Try again
+                    <FormattedMessage id='emptyContent.try'/>
                 </Button>
             </Paper>
         </div>

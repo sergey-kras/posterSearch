@@ -1,4 +1,5 @@
-import React, { Component, ReactElement, Fragment } from 'react';
+import React, { Component, ReactElement } from 'react';
+import { IntlProvider } from 'react-intl';
 import Grid from '@material-ui/core/Grid';
 import { Container } from '@material-ui/core';
 import { search as makeSearchByApi, searchFilm } from '../../../api';
@@ -7,6 +8,7 @@ import { DetailFilm } from '../../components/detailFilm';
 import { SearchObject } from '../../types';
 import { EmptyContent } from '../../components/emptyContent';
 import { TopBar } from '../../components/topBar';
+import { ru } from '../../../localize/ru';
 
 export class MainPage extends Component {
     state = {
@@ -39,7 +41,7 @@ export class MainPage extends Component {
     render(): ReactElement {
         const { isLoading, film, hasError, currentPreset } = this.state;
         return (
-            <>
+            <IntlProvider { ...ru }>
                 <TopBar/>
                 <Container maxWidth="md">
                     <Grid
@@ -56,7 +58,7 @@ export class MainPage extends Component {
                         }
                     </Grid>
                 </Container>
-            </>
+            </IntlProvider>
         );
     }
 }
