@@ -7,27 +7,6 @@ import { Props } from './index';
 */
 
 export const serialiseData = (data: any): Props => {
-    const needKeys: Array<keyof Props>= [
-        'Rated',
-        'Released',
-        'Runtime',
-        'Genre',
-        'Director',
-        'Writer',
-        'Actors',
-        'Language',
-        'Country',
-        'Awards',
-        'Ratings',
-        'Metascore',
-        'imdbRating',
-        'imdbVotes',
-        'Type',
-        'DVD',
-        'BoxOffice',
-        'Production',
-    ];
-    
     const result: Props = {};
     for(const [key, value] of Object.entries(data)) {
         // Пофиксить после типизации data
@@ -40,3 +19,24 @@ export const serialiseData = (data: any): Props => {
 
     return result;
 };
+
+export const needKeys: Array<keyof Props>= [
+    'Rated',
+    'Released',
+    'Runtime',
+    'Genre',
+    'Director',
+    'Writer',
+    'Actors',
+    'Language',
+    'Country',
+    'Awards',
+    'Ratings',
+    'Metascore',
+    'imdbRating',
+    'imdbVotes',
+    'Type',
+    'DVD',
+    'BoxOffice',
+    'Production',
+];

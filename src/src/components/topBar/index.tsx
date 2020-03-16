@@ -11,8 +11,8 @@ export const TopBar = () => {
                 <Select value="rus" variant="outlined" classes={{
                     root: 'topBar__select'
                 }}>
-                    <MenuItem value="en">EN</MenuItem>
-                    <MenuItem value="rus">RUS</MenuItem>
+                    <MenuItem value="en">Enhlish</MenuItem>
+                    <MenuItem value="rus">Русский</MenuItem>
                 </Select>
             </div>
         </AppBar>
