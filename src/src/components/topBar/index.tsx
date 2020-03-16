@@ -25,8 +25,8 @@ export const TopBar = (props: Props) => {
                     classes={{
                         root: 'topBar__select'
                     }}>
-                    <MenuItem value="en">English</MenuItem>
-                    <MenuItem value="ru">Русский</MenuItem>
+                    <MenuItem value="en-EN">English</MenuItem>
+                    <MenuItem value="ru-RU">Русский</MenuItem>
                 </Select>
             </div>
         </AppBar>
