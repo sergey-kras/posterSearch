@@ -26,16 +26,16 @@ export const DetailFilm = (props: Props) => {
                     <Grid item xs={3}>
                         {renderPoster(isLoading, data?.Poster as string)}
                     </Grid>
-                    <Grid item xs={9} alignContent="flex-start">
+                    <Grid item xs={9}>
                         <div className="detailFilm__header">
                             <h1 className="detailFilm__title">
                                 {renderTitle(isLoading, data?.Title as string)}
                             </h1>
                         </div>
 
-                        <p className="detailFilm__plot">
+                        <div className="detailFilm__plot">
                             {renderPlot(isLoading, data?.Plot as string)}
-                        </p>
+                        </div>
 
                         <div className="detailFilm__table">
                             <InfoTable isLoading={isLoading} { ...tableData }/>

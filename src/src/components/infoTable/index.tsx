@@ -37,18 +37,18 @@ export const InfoTable = (props: Props): ReactElement => {
         return renderLoading();
     }
 
-    needKeys.forEach((key) => {
+    needKeys.forEach((key, index) => {
         const value = props[key];
 
         if(!value) return;
 
         if(typeof value === 'string') {
-            result.push(renderRow(key, value));
+            result.push(renderRow(key, value, index));
         }
 
         if(typeof value === 'object') {
-            value.forEach((rate: Ratings) => {
-                result.push(renderRow(rate.Source, rate.Value));
+            value.forEach((rate: Ratings, i) => {
+                result.push(renderRow(rate.Source, rate.Value, 'rate' + i));
             });
         }
     });
@@ -58,9 +58,9 @@ export const InfoTable = (props: Props): ReactElement => {
     </div>;
 };
 
-const renderRow = (key: string, value: string): ReactElement => {
+const renderRow = (key: string, value: string, index: number | string): ReactElement => {
     return (
-        <div className="infoTable__row">
+        <div className="infoTable__row" key={index}>
             <div className="infoTable__fieldName">
                 {key}
             </div>
@@ -73,12 +73,12 @@ const renderRow = (key: string, value: string): ReactElement => {
 
 const renderLoading = (): ReactElement => {
     const result = [];
-    const skelet = <div className="infoTable__row">
+    const skelet = (i: number) => <div className="infoTable__row" key={i}>
         <Skeleton variant="text" width="100%" height={50} animation={false}/>
     </div>;
 
     for(let i = 0; i < 10; i++) {
-        result.push(skelet);
+        result.push(skelet(i));
     }
 
     return (
