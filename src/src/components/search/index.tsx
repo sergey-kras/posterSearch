@@ -43,8 +43,10 @@ export class Search extends Component<Props, State>{
 
     onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
         const value = e?.target?.value;
-        this.setState({ isLoading: true, films: [] });
-        value && this.sendSearchString(value);
+        if(value) {
+            this.setState({ isLoading: true, films: [] });
+            value && this.sendSearchString(value);
+        }
     };
 
     render(): ReactElement {
