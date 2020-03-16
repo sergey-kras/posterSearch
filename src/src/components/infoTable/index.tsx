@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react';
 import Skeleton from '@material-ui/lab/Skeleton';
 import './common.css';
+import { needKeys } from './utils';
 
 interface Ratings {
     Source: string;
@@ -36,16 +37,21 @@ export const InfoTable = (props: Props): ReactElement => {
         return renderLoading();
     }
 
-    const tableEntries = Object.entries(props);
-    for (const [key, value] of tableEntries) {
-        if(typeof value !== 'object') {
+    needKeys.forEach((key) => {
+        const value = props[key];
+
+        if(!value) return;
+
+        if(typeof value === 'string') {
             result.push(renderRow(key, value));
-        } else {
+        }
+
+        if(typeof value === 'object') {
             value.forEach((rate: Ratings) => {
                 result.push(renderRow(rate.Source, rate.Value));
             });
         }
-    };
+    });
 
     return <div className="infoTable">
         {result}

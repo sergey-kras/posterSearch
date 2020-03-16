@@ -1,6 +1,7 @@
 import React, { Component, ReactElement, ChangeEvent } from 'react';
 import TextField from '@material-ui/core/TextField'
 import Card from '@material-ui/core/Card'
+import { FormattedMessage } from 'react-intl';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import _ from 'lodash';
 import './common.css';
@@ -13,14 +14,14 @@ interface Props {
 
 interface State {
     isLoading: boolean;
-    alertText: string;
+    alertText: string | ReactElement;
     films: SearchObject[];
 }
 
 export class Search extends Component<Props, State>{
     state = {
         isLoading: false,
-        alertText: 'Enter some to find films',
+        alertText: <FormattedMessage id='search.hello'/>,
         films: []
     };
 
@@ -35,7 +36,7 @@ export class Search extends Component<Props, State>{
         } else {
             this.setState({
                 isLoading: false,
-                alertText: 'Films not found'
+                alertText: <FormattedMessage id='search.noFound'/>
             });
         }
     }, 1000);
@@ -43,7 +44,7 @@ export class Search extends Component<Props, State>{
     onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
         const value = e?.target?.value;
         this.setState({ isLoading: true, films: [] });
-        this.sendSearchString(value);
+        value && this.sendSearchString(value);
     };
 
     render(): ReactElement {
@@ -58,13 +59,13 @@ export class Search extends Component<Props, State>{
                         loading={isLoading}
                         options={films}
                         noOptionsText={alertText}
-                        debug
+                        loadingText={<FormattedMessage id='search.loading'/>}
                         // пофиксить params
                         renderInput={(params: any) => (
                             <div className="search__input">
                                 <TextField
                                     {...params}
-                                    label="Search"
+                                    label={<FormattedMessage id='search.placeholder'/>}
                                     variant="filled"
                                     fullWidth
                                     onChange={this.onInputChange}

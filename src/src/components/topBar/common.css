@@ -1,0 +1,18 @@
+.topBar {
+    width: 100%;
+    padding: 16px;
+    box-sizing: border-box;
+    text-align: right;
+}
+
+/*Знаю, что нельзя перебивать таким образом стили,
+просто пока ничего лучше не нашел, как подлезть
+под компонент. Останется время - допилю.
+Хотя в рамках тестового это кажется минорным*/
+
+.topBar__select {
+    background-color: white !important;
+    font-size: 12px !important;
+    padding: 10px 15px !important;
+    padding-right: 32px !important;
+}

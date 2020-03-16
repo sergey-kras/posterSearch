@@ -1,14 +1,12 @@
 import React, { ReactElement } from 'react';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid'
-// import CircularProgress from '@material-ui/core/CircularProgress';
 import Skeleton from '@material-ui/lab/Skeleton';
 import { InfoTable } from '../infoTable';
 import { serialiseData } from '../infoTable/utils';
 import './common.css';
 
 interface Props {
-    // дописать интерфейс даты
     data: any;
     isLoading: boolean;
     hasError?: boolean
